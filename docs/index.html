@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Synthèse comptable — Prototype</title>
+    <meta name="static-mode" content="1">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<!--
+    En Dolibarr, le wrapper <body>...<main> sera remplacé par :
+        llxHeader('', $title, '', '', 0, 0, [...], [...]);
+        print dol_get_fiche_head($head, 'synthese', $title, -1, $object->picto);
+    et fermé par :
+        print dol_get_fiche_end();
+        llxFooter();
+-->
+<main class="page">
+
+    <header class="page-header">
+        <h1>Note de contrôle — SYNTHÈSE</h1>
+        <p class="subtitle">Prototype web inspiré de l'onglet Excel « Synthèse »</p>
+    </header>
+
+    
+    <form method="post" action="" id="synthese-form" autocomplete="off">
+        <input type="hidden" name="action" value="save">
+
+        <!-- ======================================================= -->
+        <!-- 1. EN-TÊTE DOSSIER                                      -->
+        <!-- ======================================================= -->
+        <!-- Dolibarr : ces champs deviendront un objet Synthese rattaché à fk_soc (tiers). -->
+        <section class="card card-header-dossier">
+            <h2>1. En-tête dossier</h2>
+            <div class="grid grid-3">
+                <label>Entreprise
+                    <input type="text" name="entreprise" value="">
+                </label>
+                <label>N° de dossier
+                    <input type="text" name="numero_dossier" value="">
+                </label>
+                <label>Cycle
+                    <input type="text" name="cycle" value="">
+                </label>
+                <label>Date de clôture
+                    <input type="date" name="date_cloture" value="">
+                </label>
+                <label>Dénomination de la note de contrôle
+                    <input type="text" name="denomination_note" value="">
+                </label>
+                <label>Dernière mise à jour le
+                    <input type="text" name="derniere_maj" value="" readonly>
+                </label>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 2. DONNÉES PRINCIPALES                                  -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>2. Données principales</h2>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                                                    <th>N</th>
+                                                    <th>N-1</th>
+                                                    <th>N-2</th>
+                                                    <th>N-3</th>
+                                                    <th>N-4</th>
+                                                    <th>N-5</th>
+                                            </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <th scope="row">Résultat comptable</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_comptable][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Résultat fiscal</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[resultat_fiscal][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Chiffre d’affaires HT</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[ca_ht][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Taux de marge brute (%)</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[taux_marge][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Investissements réalisés</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[investissements][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Emprunts souscrits</th>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][0]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][1]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][2]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][3]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][4]"
+                                           value="">
+                                </td>
+                                                            <td>
+                                    <input type="number" step="any"
+                                           name="donnees_principales[emprunts][5]"
+                                           value="">
+                                </td>
+                                                    </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 3. SUIVI ADMINISTRATIF                                  -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>3. Suivi administratif</h2>
+            <div class="grid grid-3">
+                <label>Dernière plaquette finalisée
+                    <input type="date" name="plaquette_finalisee" value="">
+                </label>
+                <label>Dernière clôture effectuée
+                    <input type="date" name="cloture_effectuee" value="">
+                </label>
+                <label>Dernier juridique signé
+                    <input type="date" name="juridique_signe" value="">
+                </label>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 4. NOTES À REPORTER                                     -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>4. Notes à reporter</h2>
+            <div class="grid grid-2">
+                <label>Notes à reporter
+                    <textarea name="notes_a_reporter" rows="5"></textarea>
+                </label>
+                <label>Note de synthèse N-1
+                    <textarea name="note_synthese_n1" rows="5"></textarea>
+                </label>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 5. NOTE DE SYNTHÈSE                                     -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>5. Note de synthèse</h2>
+            <label>Faits significatifs de l’exercice
+                <textarea name="faits_significatifs" rows="6"></textarea>
+            </label>
+            <label>Points d’attention pour l’Expert-Comptable
+                <textarea name="points_attention_ec" rows="6"></textarea>
+            </label>
+            <label>Documents à faire signer
+                <textarea name="documents_a_signer" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 6. REVUE ANALYTIQUE                                     -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>6. Revue analytique</h2>
+            <p class="hint">Le pourcentage d’évolution est calculé automatiquement. Si la référence est 0, la mention « Non calculable » s’affiche.</p>
+            <div class="table-wrap">
+                <table class="data-table" id="table-revue">
+                    <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                                                    <th>P1</th>
+                                                    <th>P2</th>
+                                                    <th>P3</th>
+                                                    <th>P4</th>
+                                                    <th>P5</th>
+                                                    <th>P6</th>
+                                                    <th>P7</th>
+                                                    <th>P8</th>
+                                                    <th>P9</th>
+                                                    <th>P10</th>
+                                            </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <th scope="row">Chiffre d’affaires</th>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="0"
+                                               name="revue_analytique[ca][0]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="1"
+                                               name="revue_analytique[ca][1]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="2"
+                                               name="revue_analytique[ca][2]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="3"
+                                               name="revue_analytique[ca][3]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="4"
+                                               name="revue_analytique[ca][4]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="5"
+                                               name="revue_analytique[ca][5]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="6"
+                                               name="revue_analytique[ca][6]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="7"
+                                               name="revue_analytique[ca][7]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="8"
+                                               name="revue_analytique[ca][8]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ca"
+                                               data-index="9"
+                                               name="revue_analytique[ca][9]"
+                                               value="">
+                                                                    </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Marge</th>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="0"
+                                               name="revue_analytique[marge][0]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="1"
+                                               name="revue_analytique[marge][1]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="2"
+                                               name="revue_analytique[marge][2]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="3"
+                                               name="revue_analytique[marge][3]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="4"
+                                               name="revue_analytique[marge][4]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="5"
+                                               name="revue_analytique[marge][5]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="6"
+                                               name="revue_analytique[marge][6]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="7"
+                                               name="revue_analytique[marge][7]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="8"
+                                               name="revue_analytique[marge][8]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="marge"
+                                               data-index="9"
+                                               name="revue_analytique[marge][9]"
+                                               value="">
+                                                                    </td>
+                                                    </tr>
+                                            <tr>
+                            <th scope="row">Écart</th>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="0"
+                                               name="revue_analytique[ecart][0]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="1"
+                                               name="revue_analytique[ecart][1]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="2"
+                                               name="revue_analytique[ecart][2]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="3"
+                                               name="revue_analytique[ecart][3]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="4"
+                                               name="revue_analytique[ecart][4]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="5"
+                                               name="revue_analytique[ecart][5]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="6"
+                                               name="revue_analytique[ecart][6]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="7"
+                                               name="revue_analytique[ecart][7]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="8"
+                                               name="revue_analytique[ecart][8]"
+                                               value="">
+                                                                    </td>
+                                                            <td>
+                                                                            <input type="number" step="any"
+                                               data-revue="ecart"
+                                               data-index="9"
+                                               name="revue_analytique[ecart][9]"
+                                               value="">
+                                                                    </td>
+                                                    </tr>
+                                            <tr class="row-calc">
+                            <th scope="row">% d’évolution</th>
+                                                            <td>
+                                                                            <output data-revue-evolution="0">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="1">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="2">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="3">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="4">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="5">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="6">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="7">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="8">—</output>
+                                                                    </td>
+                                                            <td>
+                                                                            <output data-revue-evolution="9">—</output>
+                                                                    </td>
+                                                    </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 7. PRÉVISIONNEL                                         -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>7. Prévisionnel</h2>
+            <div class="table-wrap">
+                <table class="data-table" id="table-previsionnel">
+                    <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Prévisionnel</th>
+                        <th>Réel</th>
+                        <th>Écart</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <th scope="row">CA</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="ca" data-col="prev"
+                                       name="previsionnel[ca][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="ca" data-col="reel"
+                                       name="previsionnel[ca][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="ca">0</output></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Marge</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="marge" data-col="prev"
+                                       name="previsionnel[marge][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="marge" data-col="reel"
+                                       name="previsionnel[marge][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="marge">0</output></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Taux</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="taux" data-col="prev"
+                                       name="previsionnel[taux][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="taux" data-col="reel"
+                                       name="previsionnel[taux][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="taux">0</output></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">CF</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="cf" data-col="prev"
+                                       name="previsionnel[cf][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="cf" data-col="reel"
+                                       name="previsionnel[cf][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="cf">0</output></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Impôts</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="impots" data-col="prev"
+                                       name="previsionnel[impots][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="impots" data-col="reel"
+                                       name="previsionnel[impots][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="impots">0</output></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">MS</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="ms" data-col="prev"
+                                       name="previsionnel[ms][prev]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-prev="ms" data-col="reel"
+                                       name="previsionnel[ms][reel]"
+                                       value="">
+                            </td>
+                            <td><output data-prev-ecart="ms">0</output></td>
+                        </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 8. AIDES RÉCEPTIONNÉES                                  -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>8. Aides réceptionnées</h2>
+            <div class="table-wrap">
+                <table class="data-table" id="table-aides">
+                    <tbody>
+                                            <tr>
+                            <th scope="row">Indemnité assurance</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-aide
+                                       name="aides[indemnite_assurance]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Chômage partiel</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-aide
+                                       name="aides[chomage_partiel]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Autre aide 1</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-aide
+                                       name="aides[autre_aide_1]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Autre aide 2</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-aide
+                                       name="aides[autre_aide_2]"
+                                       value="">
+                            </td>
+                        </tr>
+                                        <tr class="row-calc">
+                        <th scope="row">Total</th>
+                        <td><output id="aides-total">0</output></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 9. CHIFFRE D’AFFAIRES / MARGE                           -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>9. Chiffre d’affaires / marge</h2>
+            <div class="grid grid-3">
+                <label>Hausse / baisse du CA de
+                    <input type="text" name="variation_ca" value="">
+                </label>
+                <label>Hausse / baisse de la marge en points de
+                    <input type="text" name="variation_marge_points" value="">
+                </label>
+                <label>Hausse / baisse de la marge en valeur de
+                    <input type="text" name="variation_marge_valeur" value="">
+                </label>
+            </div>
+            <fieldset class="checkboxes">
+                <legend>Causes</legend>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_volume" value="1">
+                        Hausse / baisse du volume                    </label>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_prix" value="1">
+                        Hausse / baisse des prix                    </label>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_destockage" value="1">
+                        Liquidation, solde, déstockage                    </label>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_typologie" value="1">
+                        Nouvelle typologie de client                    </label>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_duree" value="1">
+                        Exercice plus court ou plus long                    </label>
+                                    <label class="checkbox">
+                        <input type="checkbox" name="cause_autre" value="1">
+                        Autre cause                    </label>
+                            </fieldset>
+            <label>Commentaire
+                <textarea name="commentaire_ca_marge" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 10. CA RÉALISÉ EN N+1                                   -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>10. Chiffre d’affaires réalisé en N+1</h2>
+            <div class="table-wrap">
+                <table class="data-table" id="table-ca-n1">
+                    <thead>
+                    <tr>
+                        <th>Mois</th>
+                        <th>CA réalisé</th>
+                        <th>CA de référence (N)</th>
+                        <th>Variation vs N</th>
+                        <th>Commentaire</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td>
+                                <input type="text" name="ca_n1[0][mois]"
+                                       value="Janvier N+1">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="realise" data-row="0"
+                                       name="ca_n1[0][realise]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="reference" data-row="0"
+                                       name="ca_n1[0][reference]"
+                                       value="">
+                            </td>
+                            <td><output data-can1-variation="0">—</output></td>
+                            <td>
+                                <input type="text" name="ca_n1[0][commentaire]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>
+                                <input type="text" name="ca_n1[1][mois]"
+                                       value="Février N+1">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="realise" data-row="1"
+                                       name="ca_n1[1][realise]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="reference" data-row="1"
+                                       name="ca_n1[1][reference]"
+                                       value="">
+                            </td>
+                            <td><output data-can1-variation="1">—</output></td>
+                            <td>
+                                <input type="text" name="ca_n1[1][commentaire]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>
+                                <input type="text" name="ca_n1[2][mois]"
+                                       value="Mars N+1">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="realise" data-row="2"
+                                       name="ca_n1[2][realise]"
+                                       value="">
+                            </td>
+                            <td>
+                                <input type="number" step="any"
+                                       data-can1="reference" data-row="2"
+                                       name="ca_n1[2][reference]"
+                                       value="">
+                            </td>
+                            <td><output data-can1-variation="2">—</output></td>
+                            <td>
+                                <input type="text" name="ca_n1[2][commentaire]"
+                                       value="">
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 11. PERSPECTIVES N+1                                    -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>11. Perspectives N+1</h2>
+            <textarea name="perspectives_n1" rows="6"></textarea>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 12. CHARGES EXTERNES                                    -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>12. Charges externes</h2>
+            <div class="grid grid-2">
+                <label>Solde des honoraires impayés
+                    <input type="number" step="any" name="honoraires_impayes" value="">
+                </label>
+                <label>Fin du bail
+                    <input type="date" name="fin_bail" value="">
+                </label>
+                <label>Énergie : concerné par la hausse à venir ?
+                    <input type="text" name="energie_hausse" value="">
+                </label>
+                <label>Aide disponible ?
+                    <input type="text" name="aide_disponible" value="">
+                </label>
+                <label>Hausse proportionnelle au CA ?
+                    <input type="text" name="hausse_proportionnelle" value="">
+                </label>
+                <label>Charges compensées par transfert de charge ?
+                    <input type="text" name="transfert_charge" value="">
+                </label>
+                <label>Location sur 6 mois : coût sur 1 année
+                    <input type="number" step="any" name="location_6mois_cout_annuel" value="">
+                </label>
+            </div>
+            <label>Commentaire général
+                <textarea name="commentaire_charges" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 13. MASSE SALARIALE                                     -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>13. Masse salariale</h2>
+            <div class="table-wrap">
+                <table class="data-table" id="table-ms">
+                    <thead>
+                    <tr><th>Poste</th><th>N</th><th>N-1</th></tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <th scope="row">Salaires bruts</th>
+                            <td><input type="number" step="any" data-ms="salaires_bruts" data-col="n"
+                                       name="masse_salariale[salaires_bruts][n]"
+                                       value=""></td>
+                            <td><input type="number" step="any" data-ms="salaires_bruts" data-col="n1"
+                                       name="masse_salariale[salaires_bruts][n1]"
+                                       value=""></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Charges sociales</th>
+                            <td><input type="number" step="any" data-ms="charges_sociales" data-col="n"
+                                       name="masse_salariale[charges_sociales][n]"
+                                       value=""></td>
+                            <td><input type="number" step="any" data-ms="charges_sociales" data-col="n1"
+                                       name="masse_salariale[charges_sociales][n1]"
+                                       value=""></td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Intérim</th>
+                            <td><input type="number" step="any" data-ms="interim" data-col="n"
+                                       name="masse_salariale[interim][n]"
+                                       value=""></td>
+                            <td><input type="number" step="any" data-ms="interim" data-col="n1"
+                                       name="masse_salariale[interim][n1]"
+                                       value=""></td>
+                        </tr>
+                                        <tr>
+                        <th scope="row">CA de référence</th>
+                        <td><input type="number" step="any" data-ms="ca_ref" data-col="n"
+                                   name="masse_salariale[ca_ref][n]"
+                                   value=""></td>
+                        <td><input type="number" step="any" data-ms="ca_ref" data-col="n1"
+                                   name="masse_salariale[ca_ref][n1]"
+                                   value=""></td>
+                    </tr>
+                    <tr class="row-calc">
+                        <th scope="row">Total</th>
+                        <td><output data-ms-total="n">0</output></td>
+                        <td><output data-ms-total="n1">0</output></td>
+                    </tr>
+                    <tr class="row-calc">
+                        <th scope="row">% MS / CA</th>
+                        <td><output data-ms-ratio="n">—</output></td>
+                        <td><output data-ms-ratio="n1">—</output></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 14. DIRIGEANT                                           -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>14. Dirigeant</h2>
+            <div class="grid grid-3">
+                <label>Date de fin de chômage du dirigeant
+                    <input type="date" name="fin_chomage_dirigeant" value="">
+                </label>
+                <label>Rémunération souhaitée nette
+                    <input type="number" step="any" name="remuneration_souhaitee" value="">
+                </label>
+                <label>Coût de cette rémunération pour l’entreprise
+                    <input type="number" step="any" name="cout_remuneration" value="">
+                </label>
+            </div>
+            <label>Commentaire
+                <textarea name="commentaire_dirigeant" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 15. TNS                                                 -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>15. TNS</h2>
+            <div class="grid grid-2">
+                <label>Régularisation des cotisations obligatoires à prévoir
+                    <input type="number" step="any" name="tns_regularisation" value="">
+                </label>
+                <label>Impact régularisation N-1 sur le résultat
+                    <input type="number" step="any" name="tns_impact_n1" value="">
+                </label>
+                <label>Cotisations facultatives santé
+                    <input type="number" step="any" name="tns_sante" value="">
+                </label>
+                <label>Cotisations facultatives prévoyance
+                    <input type="number" step="any" name="tns_prevoyance" value="">
+                </label>
+                <label>Cotisations facultatives retraite
+                    <input type="number" step="any" name="tns_retraite" value="">
+                </label>
+            </div>
+            <label>Commentaire
+                <textarea name="tns_commentaire" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 16. IMPÔT                                               -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>16. Impôt</h2>
+            <div class="grid grid-2">
+                <label>Montant estimé de l’impôt
+                    <input type="number" step="any" name="impot_montant" value="">
+                </label>
+            </div>
+            <label>Commentaire
+                <textarea name="impot_commentaire" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 17. DIVERS                                              -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>17. Divers</h2>
+            <textarea name="divers" rows="5"></textarea>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 18. POINTS IMPORTANTS / MARQUANTS                       -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>18. Points importants / marquants de l’exercice</h2>
+            <textarea name="points_marquants" rows="8"></textarea>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 19. INVESTISSEMENT / EMPRUNT                            -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>19. Investissement / emprunt</h2>
+            <div class="grid grid-3">
+                <label>Nouveaux investissements
+                    <input type="number" step="any" id="invest-nouveaux"
+                           name="invest_nouveaux" value="">
+                </label>
+                <label>Emprunt
+                    <input type="number" step="any" id="invest-emprunt"
+                           name="invest_emprunt" value="">
+                </label>
+                <label>Écart
+                    <output id="invest-ecart">0</output>
+                </label>
+            </div>
+            <p>Nature du financement :
+                <output id="invest-nature-auto" class="auto-info">—</output>
+            </p>
+            <label>Précision sur la nature du financement
+                <input type="text" name="invest_nature" value="">
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 20. FOURNISSEURS / CLIENTS                              -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>20. Fournisseurs / clients</h2>
+            <textarea name="fournisseurs_clients" rows="5"></textarea>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 21. TRÉSORERIE                                          -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>21. Trésorerie</h2>
+            <div class="grid grid-3">
+                <label>Baisse de la trésorerie
+                    <input type="number" step="any" name="tresorerie_baisse" value="">
+                </label>
+                <label>Achat de parts sociales
+                    <input type="number" step="any" name="tresorerie_parts" value="">
+                </label>
+                <label>Placement sur CAT
+                    <input type="number" step="any" name="tresorerie_cat" value="">
+                </label>
+            </div>
+            <label>Commentaire
+                <textarea name="tresorerie_commentaire" rows="4"></textarea>
+            </label>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 22. STOCKS                                              -->
+        <!-- ======================================================= -->
+        <section class="card">
+            <h2>22. Stocks</h2>
+            <textarea name="stocks" rows="5"></textarea>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 23. CALCUL DE LA CAF                                    -->
+        <!-- ======================================================= -->
+        <section class="card card-beige">
+            <h2>23. Calcul de la CAF</h2>
+            <div class="table-wrap">
+                <table class="data-table" id="table-caf">
+                    <tbody>
+                                            <tr>
+                            <th scope="row">Résultat avant IS</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="resultat_avant_is"
+                                       name="caf[resultat_avant_is]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">IS</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="is"
+                                       name="caf[is]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Dotations</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="dotations"
+                                       name="caf[dotations]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">VNC 675</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="vnc_675"
+                                       name="caf[vnc_675]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Reprises</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="reprises"
+                                       name="caf[reprises]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Cession 775</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="cession_775"
+                                       name="caf[cession_775]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Quote-part subventions</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="qp_subventions"
+                                       name="caf[qp_subventions]"
+                                       value="">
+                            </td>
+                        </tr>
+                                            <tr>
+                            <th scope="row">Emprunt capital de N</th>
+                            <td>
+                                <input type="number" step="any"
+                                       data-caf="emprunt_capital_n"
+                                       name="caf[emprunt_capital_n]"
+                                       value="">
+                            </td>
+                        </tr>
+                                        <tr class="row-calc">
+                        <th scope="row">Résultat net (= Résultat avant IS − IS)</th>
+                        <td><output id="caf-resultat-net">0</output></td>
+                    </tr>
+                    <tr class="row-calc">
+                        <th scope="row">CAF</th>
+                        <td><output id="caf-total">0</output></td>
+                    </tr>
+                    <tr class="row-calc">
+                        <th scope="row">Écart (CAF − Emprunt capital de N)</th>
+                        <td><output id="caf-ecart">0</output></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- 24. CA SUPPLÉMENTAIRE À FAIRE                           -->
+        <!-- ======================================================= -->
+        <section class="card card-bleu">
+            <h2>24. CA supplémentaire à faire</h2>
+            <div class="grid grid-2">
+                <label>Montant de CA supplémentaire à faire
+                    <input type="number" step="any" name="ca_suppl_montant" value="">
+                </label>
+            </div>
+            <label>Commentaire
+                <textarea name="ca_suppl_commentaire" rows="4"></textarea>
+            </label>
+            <p class="warning">
+                Attention : si le chiffre d’affaires augmente, certaines charges peuvent également
+                augmenter proportionnellement.
+            </p>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- BARRE D'ACTIONS                                         -->
+        <!-- ======================================================= -->
+        <!-- En Dolibarr : remplacer par les boutons standards <a class="butAction"> et le contrôle des droits utilisateur. -->
+        <div class="actions no-print">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="reset" class="btn btn-secondary" id="btn-reset">Réinitialiser</button>
+            <button type="button" class="btn btn-secondary" id="btn-print">Imprimer</button>
+        </div>
+    </form>
+
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

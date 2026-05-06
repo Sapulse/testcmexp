@@ -1,0 +1,365 @@
+/* ============================================================
+ * Synthèse comptable — feuille de style du prototype
+ *
+ * Esprit Excel, mais lisible et confortable. Couleurs douces,
+ * cartes par bloc, tableaux denses mais aérés.
+ *
+ * Pour Dolibarr : ce fichier pourra être inclus via
+ * print '<link rel="stylesheet" href="'.dol_buildpath('/cmexp/assets/style.css', 1).'">';
+ * ou intégré au thème via $conf->modules_parts.
+ * ============================================================ */
+
+:root {
+    --c-bg: #f5f7fa;
+    --c-card: #ffffff;
+    --c-border: #d9dee4;
+    --c-text: #1f2933;
+    --c-muted: #6b7280;
+    --c-accent: #2c6e9b;
+    --c-accent-soft: #e9f2f9;       /* bleu clair */
+    --c-vert-clair: #e6f4e2;        /* bandeau dossier */
+    --c-vert-bord: #b6d8a8;
+    --c-beige: #f8f1e1;             /* blocs analyse */
+    --c-beige-bord: #ddc89a;
+    --c-bleu-bord: #b2d2e8;
+    --c-gris: #f1f3f6;              /* tableaux */
+    --c-warning-bg: #fff4d6;
+    --c-warning-bord: #e2c277;
+    --c-flash-bg: #e3f4e1;
+    --c-flash-bord: #95c98a;
+    --radius: 6px;
+    --shadow: 0 1px 3px rgba(0, 0, 0, .06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 28px 80px;
+}
+
+.page-header {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--c-accent);
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--c-accent);
+}
+
+.page-header .subtitle {
+    margin: 4px 0 0;
+    color: var(--c-muted);
+    font-size: 13px;
+}
+
+/* ---- Cartes de section ---------------------------------- */
+
+.card {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px 18px 18px;
+    margin-bottom: 18px;
+    page-break-inside: avoid;
+}
+
+.card h2 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: var(--c-accent);
+    border-bottom: 1px solid var(--c-border);
+    padding-bottom: 6px;
+}
+
+.card-header-dossier {
+    background: var(--c-vert-clair);
+    border-color: var(--c-vert-bord);
+}
+
+.card-bleu {
+    background: var(--c-accent-soft);
+    border-color: var(--c-bleu-bord);
+}
+
+.card-beige {
+    background: var(--c-beige);
+    border-color: var(--c-beige-bord);
+}
+
+.hint {
+    margin: -4px 0 10px;
+    color: var(--c-muted);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.warning {
+    margin-top: 12px;
+    background: var(--c-warning-bg);
+    border-left: 4px solid var(--c-warning-bord);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.flash {
+    background: var(--c-flash-bg);
+    border: 1px solid var(--c-flash-bord);
+    color: #285a1f;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+}
+
+/* ---- Grilles -------------------------------------------- */
+
+.grid {
+    display: grid;
+    gap: 12px 16px;
+}
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 800px) {
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ---- Champs --------------------------------------------- */
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--c-muted);
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    font: inherit;
+    padding: 6px 8px;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--c-text);
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid rgba(44, 110, 155, .35);
+    outline-offset: 0;
+    border-color: var(--c-accent);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 70px;
+    font-family: inherit;
+}
+
+input[readonly] {
+    background: #f3f4f6;
+    color: var(--c-muted);
+}
+
+/* ---- Cases à cocher ------------------------------------- */
+
+.checkboxes {
+    border: 1px dashed var(--c-border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    display: grid;
+    gap: 4px 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background: rgba(255, 255, 255, .55);
+}
+
+.checkboxes legend {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--c-muted);
+    padding: 0 4px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    color: var(--c-text);
+    margin: 0;
+}
+
+.checkbox input { width: auto; margin: 0; }
+
+@media (max-width: 700px) {
+    .checkboxes { grid-template-columns: 1fr; }
+}
+
+/* ---- Tableaux ------------------------------------------- */
+
+.table-wrap {
+    overflow-x: auto;
+    background: var(--c-gris);
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+}
+
+.data-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    font-size: 13px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid var(--c-border);
+    padding: 6px 8px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.data-table thead th {
+    background: var(--c-gris);
+    color: var(--c-text);
+    text-align: center;
+    font-weight: 600;
+}
+
+.data-table tbody th[scope="row"] {
+    background: var(--c-gris);
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.data-table input {
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    text-align: right;
+    padding: 4px 6px;
+}
+
+.data-table input:focus {
+    background: #fff;
+    border-color: var(--c-accent);
+}
+
+.data-table .row-calc th[scope="row"],
+.data-table .row-calc td {
+    background: #fafafa;
+    font-weight: 600;
+}
+
+.data-table output {
+    display: inline-block;
+    min-width: 60px;
+    text-align: right;
+    color: var(--c-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.auto-info {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--c-accent);
+    font-weight: 600;
+}
+
+/* ---- Boutons -------------------------------------------- */
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--c-border);
+}
+
+.btn {
+    font: inherit;
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: var(--c-accent);
+    color: #fff;
+}
+.btn-primary:hover { background: #235a82; }
+
+.btn-secondary {
+    background: #fff;
+    color: var(--c-text);
+    border-color: var(--c-border);
+}
+.btn-secondary:hover { background: var(--c-gris); }
+
+/* ---- Impression ----------------------------------------- */
+
+@media print {
+    body { background: #fff; }
+    .page { max-width: none; padding: 0; }
+    .no-print { display: none !important; }
+
+    .card {
+        box-shadow: none;
+        border-color: #999;
+        margin-bottom: 10px;
+        padding: 8px 10px;
+    }
+
+    .card-header-dossier,
+    .card-bleu,
+    .card-beige {
+        background: #fff !important;
+    }
+
+    h1, h2 { color: #000 !important; }
+
+    input,
+    textarea {
+        border: 1px solid #aaa !important;
+        background: #fff !important;
+    }
+
+    .data-table,
+    .data-table th,
+    .data-table td { border-color: #aaa !important; }
+
+    .data-table thead th,
+    .data-table tbody th[scope="row"],
+    .data-table .row-calc td { background: #f3f3f3 !important; }
+
+    .warning {
+        background: #fff !important;
+        border-left-color: #000 !important;
+    }
+}

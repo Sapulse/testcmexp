@@ -255,7 +255,8 @@ function syntheseEmpty(): array
 //   }
 //
 $flashMessage = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save') {
+$requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+if ($requestMethod === 'POST' && ($_POST['action'] ?? '') === 'save') {
     $payload = $_POST;
     unset($payload['action']);
     // Force la date de mise à jour
@@ -274,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save'
 // Données à afficher
 $data = syntheseLoad();
 // Si on vient de POST, afficher les valeurs envoyées (sinon les valeurs disque)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save') {
+if ($requestMethod === 'POST' && ($_POST['action'] ?? '') === 'save') {
     $data = array_merge($data, $_POST);
 }
 
